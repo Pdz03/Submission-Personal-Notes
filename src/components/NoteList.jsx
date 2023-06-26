@@ -9,7 +9,7 @@ function NoteList({ notes, onDelete }) {
           <NoteItem 
           key={note.id}
           id={note.id}
-          // onDelete={onDelete}
+          onDelete={onDelete}
           {...note} />
         ))
       }
