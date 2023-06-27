@@ -8,27 +8,31 @@ class NoteInput extends React.Component {
         this.state = {
           title: '',
           body: '',
-          noteBodyLength: 0
+          noteTitleLength: 0
         }
       
-        this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this);
+        this.onTitleChangeEventHandler = this.onTitleChangeEventHandler.bind(this);
         this.onBodyChangeEventHandler = this.onBodyChangeEventHandler.bind(this);
         this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this);
       }
       
-      onNameChangeEventHandler(event) {
+      onTitleChangeEventHandler(event) {
+        if (event.target.value.length <= 50) {
         this.setState(() => {
           return {
             title: event.target.value,
+            noteTitleLength: event.target.value.length
           }
         });
+      } else {
+        alert('Batas jumlah karakter adalah 50 karakter!');
+      }
       }
       
       onBodyChangeEventHandler(event) {
         this.setState(() => {
           return {
             body: event.target.value,
-            noteBodyLength: event.target.value.length
           }
         });
       }
@@ -38,16 +42,17 @@ class NoteInput extends React.Component {
         this.props.addNote(this.state);
         this.state.title='';
         this.state.body='';
-        this.state.noteBodyLength=50;
+        this.state.noteTitleLength=50;
       }
 
  render() {
    return (
      <form className='note-input' onSubmit={this.onSubmitEventHandler}>
-       <input className="note-input__title" type="text" placeholder="Judul" value={this.state.title} onChange={this.onNameChangeEventHandler} />
-       <textarea className="note-input__body" type="text" placeholder="Isi Catatan" value={this.state.body} onChange={this.onBodyChangeEventHandler}></textarea>
-       <p className="note-input__title__char-limit">Character left: {50 - this.state.noteBodyLength}</p><br></br>
-       <button type="submit">Tambah</button>
+      <h2>Buat Catatan</h2>
+       <input className='note-input__title' type='text' placeholder='Judul' value={this.state.title} onChange={this.onTitleChangeEventHandler} />
+       <p className='note-input__title__char-limit' id='limit'>Character left: {50 - this.state.noteTitleLength}</p>
+       <textarea className='note-input__body' type='text' placeholder='Isi Catatan' value={this.state.body} onChange={this.onBodyChangeEventHandler}></textarea>
+       <button type='submit'>Tambah</button>
      </form>
    )
  }

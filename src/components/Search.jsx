@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Search = ({ onSearch }) => {
 
@@ -7,10 +7,10 @@ const Search = ({ onSearch }) => {
     } 
 
     return (
-        <div className="note-search">
+        <div className='note-search'>
             <input 
-                type="text" 
-                placeholder="Search for notes..."
+                type='text' 
+                placeholder='Pencarian ...'
                 onChange={onSearchbarChange}
             />
         </div>
