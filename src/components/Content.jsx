@@ -2,6 +2,7 @@ import React from 'react';
 import NoteList from './NoteList';
 import Header from './Header';
 import { getInitialData } from '../utils';
+import NoteInput from './NoteInput';
 // import ContactInput from './ContactInput';
  
 class Content extends React.Component {
@@ -15,7 +16,7 @@ class Content extends React.Component {
    this.onDeleteHandler = this.onDeleteHandler.bind(this);
    this.onArchiveHandler = this.onArchiveHandler.bind(this);
    this.onSearchHandler = this.onSearchHandler.bind(this);
-   // this.onAddContactHandler = this.onAddContactHandler.bind(this);
+   this.onAddNoteHandler = this.onAddNoteHandler.bind(this);
 }
  
  onDeleteHandler(id) {
@@ -40,21 +41,22 @@ onSearchHandler(query) {
   }
 }
 
-//  onAddContactHandler({ name, tag }) {
-//   this.setState((prevState) => {
-//     return {
-//       contacts: [
-//         ...prevState.contacts,
-//         {
-//           id: +new Date(),
-//           name,
-//           tag,
-//           imageUrl: '/images/default.jpg',
-//         }
-//       ]
-//     }
-//   });
-// }
+ onAddNoteHandler({ title, body }) {
+  this.setState((prevState) => {
+    return {
+      notes: [
+        ...prevState.notes,
+        {
+          id: 'noteid-'+new Date(),
+          title,
+          body,
+          archived: false,
+          createdAt: +new Date()
+        }
+      ]
+    }
+  });
+}
  
  render() {
     const notes = this.state.notes
@@ -71,7 +73,7 @@ onSearchHandler(query) {
     <Header onSearch={this.onSearchHandler}/>
     <div className="note-app__body">
        <h2>Buat Catatan</h2>
-       {/* <ContactInput addContact={this.onAddContactHandler} /> */}
+       <NoteInput addNote={this.onAddNoteHandler} />
        <h2>Catatan Aktif</h2>
        {daftarNote.length > 0 ? 
         <NoteList notes={daftarNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
