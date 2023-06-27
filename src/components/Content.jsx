@@ -3,7 +3,6 @@ import NoteList from './NoteList';
 import Header from './Header';
 import { getInitialData } from '../utils';
 import NoteInput from './NoteInput';
-// import ContactInput from './ContactInput';
  
 class Content extends React.Component {
  constructor(props) {
@@ -71,18 +70,17 @@ onSearchHandler(query) {
     return (
     <div>
     <Header onSearch={this.onSearchHandler}/>
-    <div className="note-app__body">
-       <h2>Buat Catatan</h2>
+    <div className='note-app__body'>
        <NoteInput addNote={this.onAddNoteHandler} />
        <h2>Catatan Aktif</h2>
        {daftarNote.length > 0 ? 
         <NoteList notes={daftarNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-        :<p className="notes-list__empty-message">Tidak ada catatan</p>
+        :<p className='notes-list__empty-message'>Tidak ada catatan</p>
        }
        <h2>Arsip</h2>
        {archivedNote.length > 0 ? 
         <NoteList notes={archivedNote} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler}/>
-        :<p className="notes-list__empty-message">Tidak ada catatan</p>
+        :<p className='notes-list__empty-message'>Tidak ada catatan</p>
        }
     </div>
     </div>
